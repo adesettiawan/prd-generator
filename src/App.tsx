@@ -13,7 +13,7 @@ function HomePage() {
         <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-2.5">
             <div className="w-8 h-8 bg-text-tertiary rounded-lg flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-surface-base" />
+              <FileText className="w-4 h-4 text-surface-base" />
             </div>
             <span className="text-sm font-semibold tracking-tight">PRD Generator</span>
           </Link>
@@ -81,7 +81,7 @@ function CreatePage() {
         <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-2.5">
             <div className="w-8 h-8 bg-text-tertiary rounded-lg flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-surface-base" />
+              <FileText className="w-4 h-4 text-surface-base" />
             </div>
             <span className="text-sm font-semibold tracking-tight">PRD Generator</span>
           </Link>
