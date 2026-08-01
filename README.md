@@ -9,7 +9,7 @@ Generate comprehensive Product Requirements Documents (PRDs) in minutes using AI
 - **Styling:** Tailwind CSS v4
 - **State:** TanStack Query v5
 - **Forms:** React Hook Form + Zod
-- **AI:** Google Gemini API (gemini-1.5-flash)
+- **AI:** Google Gemini API
 - **Export:** jsPDF, react-markdown
 
 ## Getting Started
