@@ -69,7 +69,7 @@ export function ApiKeySettings() {
 
       {/* Modal */}
       {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center overflow-y-auto p-4" style={{ zIndex: 9999 }}>
+        <div className="fixed inset-0 flex items-start justify-center overflow-y-auto p-4" style={{ zIndex: 9999 }}>
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
@@ -77,7 +77,7 @@ export function ApiKeySettings() {
           />
 
           {/* Dialog */}
-          <div className="relative bg-surface-card border border-border-default rounded-xl p-6 w-full max-w-md shadow-2xl max-h-[90vh] overflow-y-auto">
+          <div className="relative bg-surface-card border border-border-default rounded-xl p-6 w-full max-w-md shadow-2xl max-h-[90vh] overflow-y-auto my-auto">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <Key className="w-5 h-5 text-text-tertiary" />
