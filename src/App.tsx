@@ -1,4 +1,5 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 import { ArrowLeft, Sparkles, FileText, Zap, Download } from 'lucide-react'
 import { PRDForm } from './components/form/PRDForm'
 import { PRDEditor } from './components/editor/PRDEditor'
@@ -70,6 +71,17 @@ function HomePage() {
 }
 
 function CreatePage() {
+  const navigate = useNavigate()
+
+  // ESC to go back
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') navigate('/')
+    }
+    window.addEventListener('keydown', handleEsc)
+    return () => window.removeEventListener('keydown', handleEsc)
+  }, [navigate])
+
   return (
     <div className="min-h-screen">
       {/* Header */}

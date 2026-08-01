@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { Settings, Key, Check, X, Trash2, TestTube } from 'lucide-react'
 import { getApiKey, setApiKey, clearApiKey } from '../../services/apiKey'
@@ -8,6 +8,16 @@ import { Input } from './Input'
 
 export function ApiKeySettings() {
   const [isOpen, setIsOpen] = useState(false)
+
+  // ESC to close modal
+  useEffect(() => {
+    if (!isOpen) return
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOpen(false)
+    }
+    window.addEventListener('keydown', handleEsc)
+    return () => window.removeEventListener('keydown', handleEsc)
+  }, [isOpen])
   const [apiKey, setApiKeyState] = useState(getApiKey())
   const [saved, setSaved] = useState(false)
   const [cleared, setCleared] = useState(false)
@@ -61,7 +71,7 @@ export function ApiKeySettings() {
       {/* Settings Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 text-text-secondary hover:text-text-inverse transition-colors duration-fast text-sm"
+        className="flex items-center gap-2 text-text-secondary hover:text-text-inverse transition-colors duration-fast text-sm cursor-pointer"
         aria-label="Open API settings"
       >
         <Settings className="w-4 h-4" />
@@ -88,7 +98,7 @@ export function ApiKeySettings() {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-text-secondary hover:text-text-inverse transition-colors"
+                className="text-text-secondary hover:text-text-inverse transition-colors cursor-pointer"
                 aria-label="Close settings"
               >
                 <X className="w-5 h-5" />
