@@ -7,6 +7,8 @@ import { useGeneratePRD } from '../../hooks/useGeneratePRD'
 import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 import { Textarea } from '../ui/Textarea'
+import { FormSection } from '../ui/FormSection'
+import { FormField } from '../ui/FormField'
 import type { PRDParams } from '../../types/prd'
 
 const prdSchema = z.object({
@@ -57,49 +59,54 @@ export function PRDForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-      <Input
-        label="Project Name"
-        placeholder="e.g., E-commerce Platform"
-        error={errors.projectName?.message}
-        {...register('projectName')}
-      />
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <FormSection title="Project Info" description="Basic details about your project">
+        <FormField label="Project Name" required error={errors.projectName?.message}>
+          <Input
+            placeholder="e.g., E-commerce Platform"
+            {...register('projectName')}
+          />
+        </FormField>
+        <FormField label="Target Audience" required error={errors.targetAudience?.message}>
+          <Input
+            placeholder="e.g., B2B SaaS customers"
+            {...register('targetAudience')}
+          />
+        </FormField>
+      </FormSection>
 
-      <Textarea
-        label="Core Goals"
-        rows={3}
-        placeholder="What are the main objectives?"
-        error={errors.coreGoals?.message}
-        {...register('coreGoals')}
-      />
+      <FormSection title="Requirements" description="What should this PRD cover?">
+        <FormField label="Core Goals" required error={errors.coreGoals?.message}>
+          <Textarea
+            rows={3}
+            placeholder="What are the main objectives?"
+            {...register('coreGoals')}
+          />
+        </FormField>
+        <FormField label="Key Features" required error={errors.keyFeatures?.message}>
+          <Textarea
+            rows={4}
+            placeholder="List the main features and functionality"
+            {...register('keyFeatures')}
+          />
+        </FormField>
+      </FormSection>
 
-      <Input
-        label="Target Audience"
-        placeholder="e.g., B2B SaaS customers"
-        error={errors.targetAudience?.message}
-        {...register('targetAudience')}
-      />
-
-      <Textarea
-        label="Key Features"
-        rows={4}
-        placeholder="List the main features and functionality"
-        error={errors.keyFeatures?.message}
-        {...register('keyFeatures')}
-      />
-
-      <Textarea
-        label="Out of Scope"
-        rows={2}
-        placeholder="What is NOT included?"
-        {...register('outOfScope')}
-      />
-
-      <Input
-        label="Deadlines"
-        placeholder="e.g., MVP in 3 months"
-        {...register('deadlines')}
-      />
+      <FormSection title="Additional" optional>
+        <FormField label="Out of Scope" error={errors.outOfScope?.message}>
+          <Textarea
+            rows={2}
+            placeholder="What is NOT included?"
+            {...register('outOfScope')}
+          />
+        </FormField>
+        <FormField label="Deadlines" error={errors.deadlines?.message}>
+          <Input
+            placeholder="e.g., MVP in 3 months"
+            {...register('deadlines')}
+          />
+        </FormField>
+      </FormSection>
 
       <div className="pt-2">
         <Button
