@@ -21,7 +21,7 @@ function HomePage() {
       </header>
 
       {/* Hero */}
-      <div className="max-w-3xl mx-auto px-6 pt-24 pb-16">
+      <div className="max-w-3xl mx-auto px-6 pt-12 pb-16">
         <div className="text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-surface-card rounded-full text-xs font-medium text-text-secondary mb-6">
             <Zap className="w-3 h-3 text-text-tertiary" />
@@ -86,23 +86,28 @@ function CreatePage() {
       </header>
 
       {/* Content */}
-      <div className="max-w-2xl mx-auto px-6 py-12">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors mb-8"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Back
-        </Link>
+      <div className="max-w-2xl mx-auto px-6">
+        {/* Sticky sub-header */}
+        <div className="sticky top-[57px] z-[5] bg-surface-base/80 backdrop-blur-xl py-6 -mx-6 px-6">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors mb-4"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back
+          </Link>
 
-        <div className="mb-8">
-          <h1 className="text-2xl font-semibold tracking-tight mb-2">New PRD</h1>
-          <p className="text-sm text-text-secondary">
-            Fill in the details below to generate your product requirements document.
-          </p>
+          <div>
+            <h1 className="text-2xl font-semibold tracking-tight mb-2">New PRD</h1>
+            <p className="text-sm text-text-secondary">
+              Fill in the details below to generate your product requirements document.
+            </p>
+          </div>
         </div>
 
-        <PRDForm />
+        <div className="pb-12">
+          <PRDForm />
+        </div>
       </div>
     </div>
   )
