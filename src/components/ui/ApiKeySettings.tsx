@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Settings, Key, Check, X, Trash2, TestTube } from 'lucide-react'
 import { getApiKey, setApiKey, clearApiKey } from '../../services/apiKey'
 import { testApiKey } from '../../services/testApiKey'
@@ -68,7 +69,7 @@ export function ApiKeySettings() {
       </button>
 
       {/* Modal */}
-      {isOpen && (
+      {isOpen && createPortal(
         <div className="fixed inset-0" style={{ zIndex: 9999 }}>
           {/* Backdrop */}
           <div
@@ -186,7 +187,8 @@ export function ApiKeySettings() {
             </div>
           </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   )
