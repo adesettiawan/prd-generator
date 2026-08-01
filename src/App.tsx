@@ -1,9 +1,9 @@
 import { Routes, Route, Link, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
 import { ArrowLeft, Sparkles, FileText, Zap, Download } from 'lucide-react'
 import { PRDForm } from './components/form/PRDForm'
 import { PRDEditor } from './components/editor/PRDEditor'
 import { ApiKeySettings } from './components/ui/ApiKeySettings'
+import { useEscKey } from './hooks/useEscKey'
 
 function HomePage() {
   return (
@@ -72,15 +72,7 @@ function HomePage() {
 
 function CreatePage() {
   const navigate = useNavigate()
-
-  // ESC to go back
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') navigate('/')
-    }
-    window.addEventListener('keydown', handleEsc)
-    return () => window.removeEventListener('keydown', handleEsc)
-  }, [navigate])
+  useEscKey(() => navigate('/'))
 
   return (
     <div className="min-h-screen">

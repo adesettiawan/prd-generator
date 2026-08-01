@@ -1,23 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Settings, Key, Check, X, Trash2, TestTube } from 'lucide-react'
 import { getApiKey, setApiKey, clearApiKey } from '../../services/apiKey'
 import { testApiKey } from '../../services/testApiKey'
+import { useEscKey } from '../../hooks/useEscKey'
 import { Button } from './Button'
 import { Input } from './Input'
 
 export function ApiKeySettings() {
   const [isOpen, setIsOpen] = useState(false)
 
-  // ESC to close modal
-  useEffect(() => {
-    if (!isOpen) return
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsOpen(false)
-    }
-    window.addEventListener('keydown', handleEsc)
-    return () => window.removeEventListener('keydown', handleEsc)
-  }, [isOpen])
+  useEscKey(() => setIsOpen(false), isOpen)
+
   const [apiKey, setApiKeyState] = useState(getApiKey())
   const [saved, setSaved] = useState(false)
   const [cleared, setCleared] = useState(false)
